@@ -125,8 +125,8 @@ impl UXGeoTexture {
             )
             .context("Failed to get data size")?;
 
-        //let data_size = tex.data_size.map(|v| v as usize).unwrap_or(calculated_size);
-        let data_size = calculated_size;
+        let data_size = tex.data_size.map(|v| v as usize).unwrap_or(calculated_size);
+        // let data_size = calculated_size;
         // println!("calculated_size: {}", calculated_size);
         // println!("data_size: {}", data_size);
         // println!("original data_size: {}", tex.data_size.map(|v| v as usize).unwrap_or(calculated_size));
@@ -167,7 +167,7 @@ impl UXGeoTexture {
         }
 
         for (i, frame_offset) in tex.frame_offsets.iter().enumerate() {
-            edb.seek(std::io::SeekFrom::Start(frame_offset.offset_absolute() + 8*11 - 4))?;
+            edb.seek(std::io::SeekFrom::Start(frame_offset.offset_absolute()))?;
             edb.read_exact(&mut data)
                 .context(format!("Failed to read frame {i}"))?;
 
