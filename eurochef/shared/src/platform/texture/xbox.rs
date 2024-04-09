@@ -39,9 +39,6 @@ impl TextureDecoder for XboxTextureDecoder {
         anyhow::ensure!(output.len() == (width as usize * height as usize * depth as usize) * 4);
 
         let mut buffer = vec![0u8; output.len()];
-        // println!("Format: {:?}", fmt);
-        // println!("(w,h) = ({},{})", width, height);
-        // println!("Input size: {}", input.len());
         match fmt {
             InternalFormat::Dxt1
             | InternalFormat::Dxt1Alpha
